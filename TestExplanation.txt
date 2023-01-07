@@ -1,0 +1,10 @@
+To solve the given question i seperat the all possible blacks with seperation based on 
+asking in reqs. After the seperation it like array in array.
+
+To compare the blocks,i assumed all the blocks having same distant and taking the x,y,z variables.
+
+verifying the blocks using comparision operators.
+
+after the checking all blocks and it's distance taking possible blocks into a temp1 array.
+
+from temp1 array i grt one of the block using for loop and return that value as function output.

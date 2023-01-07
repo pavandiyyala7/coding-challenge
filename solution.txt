@@ -1,0 +1,64 @@
+function apartmentHunting(blocks, reqs) {
+  // Write your code here.
+
+let req = [];  //array of possible blocks with requirement seperation.
+  let temp = [];
+  
+  for(let i=0;i<reqs.length;i++){
+      temp=[];
+      for(let j=0;j<blocks.length;j++){
+          if(blocks[j][reqs[i]]===true){
+              temp.push(j);
+          }
+      }req.push(temp);
+  }
+  var temp1 = [];  //possible blocks.
+  var x=0,y=0,z=999;  // taking a sample values for test cases.
+  for(let i=0;i<req.length;i++){
+      for(let j=0;j<req[i].length;j++){
+          for(let k=i-1;k>=0;k--){
+              if(req[i][j]<req[k][req[k].length-1]){
+                  for(let l=0;l<req[k].length;l++){
+                      if(req[i][j]>=req[k][l]){
+                          x=req[i][j]-req[k][l];
+                      }}}
+                      else{
+                          x=req[i][j]-req[k][req[k].length-1];
+                      }
+                  }
+              for(let k=i+1;k<req.length;k++){
+                  if(req[i][j]<=req[k][0]){
+                      y=req[k][0]-req[i][j];
+                  }
+                  else{
+                      for(let l=0;l<req[k].length;l++){
+                          if(req[i][j]<=req[k][l]){
+                              y=req[k][l]-req[i][j];
+                          }
+                      }
+                  }
+              }
+              if(x<y){
+                  if(z>y){z=y}
+                  temp1[req[i][j]]=y;
+              }else{
+                  if(z>x){z=x}
+                  temp1[req[i][j]]=x;
+              }
+              
+          }
+      }
+     }
+ let result;
+ for(let i=0;i<blocks.length;i++){
+     if(temp1[i]===z){
+         result=i;
+         break;
+     }
+ }
+ return result;
+}
+
+// Do not edit the line below.
+exports.apartmentHunting = apartmentHunting;
+
